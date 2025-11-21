@@ -1,8 +1,8 @@
 #include <iostream>
 #include <math.h>
-
+using namespace std;
 int main(){
-    int x,y,x0,y0,r,R;
+    float x,y,x0,y0,r,R;
     x0 = 0;
     y0 = 2;
     r = 3;

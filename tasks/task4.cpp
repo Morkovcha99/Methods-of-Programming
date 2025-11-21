@@ -6,7 +6,7 @@ int main(){
     double xn, xk,dx, x;
 
     cout << "Введите a, b, c, x нач, x кон, dX=_\b";
-    cin >> a >> b >> c >> xn >> xk >> dx;
+    // cin >> a >> b >> c >> xn >> xk >> dx;
     //a = 1;
     //b = 2;
     //c = 3;
@@ -26,7 +26,7 @@ int main(){
     // и - &, или - |
 
     cout << "|   x    |  F(x) |\n";
-    for (double x = xn; x <= xk; x += dx)
+    for (x = xn; x <= xk; x += dx)
     {
         if (c < 0 && c != 0)
         {
@@ -41,16 +41,7 @@ int main(){
             else
             {
                 F = (a-x)/(c*x);
-                if (((int(a) ^ int(b)) & !(int(a) | int(c))) != 0)
-                {
-                    printf("|  %.2f  |   %.2f   |\n", x, F);
-                }
-                else
-                {
-                    printf("|  %.2f  |   %d   |\n", x, int(F));
-                }
             }
-
         }
         else
         {
@@ -61,17 +52,17 @@ int main(){
             else
             {
                 F = x/c;
-                if (((int(a) ^ int(b)) & !(int(a) | int(c))) != 0)
-                {
-                    printf("|  %.2f  |   %.2f   |\n", x, F);
-                }
-                else
-                {
-                    printf("|  %.2f  |   %d   |\n", x, int(F));
-                }
             }
         }
 
+        if (((int(a) ^ int(b)) & !(int(a) | int(c))) != 0)
+        {
+            printf("|  %.2f  |   %.2f   |\n", x, F);
+        }
+        else
+        {
+            printf("|  %.2f  |   %d   |\n", x, int(F));
+        }
 
     }
 }
