@@ -50,7 +50,20 @@ int main(){
 
     }
 
+
+    for (int i=0; i<n;i++)
+    {
+        for (int j=0;j<n;j++)
+        {
+            cout << matrix[i][j] << " ";
+        }
+
+        cout << "\n";
+    }
     
+
+}
+
 // 1 0 0 1
 // 1 1 1 1  
 // 1 1 1 1  
@@ -68,15 +81,3 @@ int main(){
 // 1 1 1 1 1 1
 // 1 1 0 0 1 1
 // 1 0 0 0 0 1
-    for (int i=0; i<n;i++)
-    {
-        for (int j=0;j<n;j++)
-        {
-            cout << matrix[i][j] << " ";
-        }
-
-        cout << "\n";
-    }
-    
-
-}

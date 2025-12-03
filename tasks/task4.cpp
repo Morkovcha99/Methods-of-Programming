@@ -13,17 +13,6 @@ int main(){
     //xn = 1;
     //xk = 5;
     //dx = 1;
-    // cout << "Введите b=_\b";
-    // cin >> b;
-    // cout << "Введите c=_\b";
-    // cin >> c;
-    // cout << "Введите x нач=_\b";
-    // cin >> xn;
-    // cout << "Введите x кон=_\b";
-    // cin >> xk;
-    // cout << "Введите dX=_\b";
-    // cin >> dx;
-    // и - &, или - |
 
     cout << "|   x    |  F(x) |\n";
     for (x = xn; x <= xk; x += dx)
