@@ -1,13 +1,15 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
+
+#define N 40
 int main(){
     int n;
 
     cout << "Введите какого порядка матрица =_\b";
     cin >> n;
 
-    int matrix[n][n];
+    int matrix[N][N];
 
     for (int i=0; i<n; i++)
     {

@@ -2,84 +2,66 @@
 #include <math.h>
 using namespace std;
 int main(){
-    float a,b,c,F;
-    double xn, xk,dx, x;
+    float a,b,c;
+    double xn, xk,dx, x, F;
 
     cout << "Введите a, b, c, x нач, x кон, dX=_\b";
     cin >> a >> b >> c >> xn >> xk >> dx;
-    //a = 1;
-    //b = 2;
-    //c = 3;
-    //xn = 1;
-    //xk = 5;
-    //dx = 1;
-    // cout << "Введите b=_\b";
-    // cin >> b;
-    // cout << "Введите c=_\b";
-    // cin >> c;
-    // cout << "Введите x нач=_\b";
-    // cin >> xn;
-    // cout << "Введите x кон=_\b";
-    // cin >> xk;
-    // cout << "Введите dX=_\b";
-    // cin >> dx;
-    // и - &, или - |
+    // a = 0; // 1 0 1 0 0.5
+    // b = 0; // 2 1 2 0 2.5
+    // c = 0; // -1 2 3 0 2.5
+    // xn = 1; // -2 1 1 1 0.1
+    // xk = 25; // 2 5 4 3 1.0
+    // dx = 1; // 1 1 1 1 0.2
+    bool showReal = ((int(a) ^ int(b)) & ~(int(a) | int(c))) != 0;
 
-    cout << "|   x    |  F(x) |\n";
-    for (double x = xn; x <= xk; x += dx)
+
+    printf("+---------+---------+\n");
+    printf("|    x    |   F(x)  |\n");
+    printf("+---------+---------+\n");
+    for (double x = xn; x <= xk + 1e-9; x += dx)
     {
-        if (c < 0 && c != 0)
+        bool error = false;
+        if (c < 0 && fabs(c) > 1e-9)
         {
             F =  -(a*x*x);
         }
-        else if (c > 0 && a == 0)
+        else if (c > 0 && fabs(a) < 1e-9)
         {
-            if (c == 0 || x == 0)
+            if (abs(c * x) < 1e-9)
             {
-                cout << "Ошибка! Деление на ноль.";
+                error = true;
             }
             else
             {
                 F = (a-x)/(c*x);
-                if (((int(a) ^ int(b)) & !(int(a) | int(c))) != 0)
-                {
-                    printf("|  %.2f  |   %.2f   |\n", x, F);
-                }
-                else
-                {
-                    printf("|  %.2f  |   %d   |\n", x, int(F));
-                }
             }
 
         }
         else
         {
-            if (c == 0)
+            if (fabs(c) < 1e-9)
             {
-                cout << "Ошибка! Деление на ноль.";
+                error = true;
             }
             else
             {
                 F = x/c;
-                if (((int(a) ^ int(b)) & !(int(a) | int(c))) != 0)
-                {
-                    printf("|  %.2f  |   %.2f   |\n", x, F);
-                }
-                else
-                {
-                    printf("|  %.2f  |   %d   |\n", x, int(F));
-                }
             }
         }
 
-        if (((int(a) ^ int(b)) & !(int(a) | int(c))) != 0)
-        {
-            printf("|  %.2f  |   %.2f   |\n", x, F);
-        }
-        else
-        {
-            printf("|  %.2f  |   %d   |\n", x, int(F));
+        if (error) {
+            printf("| %7.2f |  error  |\n", x);
+        } else {
+            if (showReal) {
+                printf("| %7.2f | %7.2f |\n", x, F);
+            } else {
+                printf("| %7.2f | %7d |\n", x, int(F));
+            }
         }
 
     }
+    printf("+---------+---------+\n");
+
+    return 0;
 }

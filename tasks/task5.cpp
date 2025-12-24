@@ -1,53 +1,36 @@
 #include <iostream>
-#include <math.h>
 using namespace std;
-int main(){
-    float P, a;
-    bool input_check = true;
+
+int main() {
+    double a, P;
     int n;
     
-
-    while (input_check)
-    {
-        cout << "Введите действительное число a=_\b":
-        cin >> a;
-        if (cin.fail())
-        {
-            cin.ignore();
+    cout << "Введите действительное число a: ";
+    while (!(cin >> a)) {
+        cin.clear();
+        cin.ignore(10000, '\n');
+        cout << "Ошибка! Введите число (например: 2.5, -3, 0): ";
+    }
+    cin.ignore(10000, '\n');
+    
+    cout << "Введите натуральное число n: ";
+    while (!(cin >> n) || n <= 0) {
+        if (!cin) {
             cin.clear();
-            cout << "Нужно ДЕЙСТВИТЕЛЬНОЕ число.";
-        }
-        else
-        {
-            input_check = false;
+            cin.ignore(10000, '\n');
+            cout << "Ошибка! Введите целое число: ";
+        } else if (n <= 0) {
+            cin.ignore(10000, '\n');
+            cout << "Ошибка! Число должно быть положительным: ";
         }
     }
-    input_check = true;
-    while (input_check)
-    {
-        cout << "Введите натуральное число n=_\b":
-        cin >> n;
-        if (cin.fail())
-        {
-            cin.ignore();
-            cin.clear();
-            cout << "Нужно ДЕЙСТВИТЕЛЬНОЕ число.";
-        }
-        else
-        {
-            input_check = false;
-        }
-    }
-
-
-    P = 1 * a;
-
-    for (int i = 1; i <= n; i++)
-    {
+    
+    P = a;
+    for (int i = 1; i <= n; i++) {
         P *= (a - i * n);
     }
-
-    cout << "P = " << P << endl;
-
-    //#TODO: проверка готова, нужна правильная работа функции
+    
+    cout << "Результат: P = " << P << endl;
+    
+    return 0;
 }

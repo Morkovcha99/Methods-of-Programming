@@ -1,57 +1,43 @@
 #include <iostream>
-#include <math.h>
+#include <locale>
+#include <cmath>
+
+#define M_PI 3.14159265358979323846
 using namespace std;
-int main(){
-    float a,b,c,F;
-    double xn, xk,dx, x;
 
-    cout << "Введите a, b, c, x нач, x кон, dX=_\b";
-    // cin >> a >> b >> c >> xn >> xk >> dx;
-    //a = 1;
-    //b = 2;
-    //c = 3;
-    //xn = 1;
-    //xk = 5;
-    //dx = 1;
+int main() {
+    setlocale(LC_ALL, "Russian");
 
-    cout << "|   x    |  F(x) |\n";
-    for (x = xn; x <= xk; x += dx)
-    {
-        if (c < 0 && c != 0)
-        {
-            F =  -(a*x*x);
-        }
-        else if (c > 0 && a == 0)
-        {
-            if (c == 0 || x == 0)
-            {
-                cout << "Ошибка! Деление на ноль.";
-            }
-            else
-            {
-                F = (a-x)/(c*x);
-            }
-        }
-        else
-        {
-            if (c == 0)
-            {
-                cout << "Ошибка! Деление на ноль.";
-            }
-            else
-            {
-                F = x/c;
-            }
+    float x;
+    float x2;
+
+    do {
+        cout << "Ввести x:_\b";
+        cin >> x;
+        x2 = fabs(x);
+        if (x2 <= 1) {
+            cout << "Вне заданного промежутка\n";
         }
 
-        if (((int(a) ^ int(b)) & !(int(a) | int(c))) != 0)
-        {
-            printf("|  %.2f  |   %.2f   |\n", x, F);
-        }
-        else
-        {
-            printf("|  %.2f  |   %d   |\n", x, int(F));
-        }
+    } while (x2 <= 1);
 
+    double t = 0.1;    
+    double sum = M_PI/2;
+    int n = 1;
+
+    double x1 = x;  
+
+    
+    while (fabs(t) > 0.0000001) {
+        t = (1 / (n *(-x1)));
+
+        sum += t;
+        x1 *= -(x * x);
+        n += 2;
+        cout << t << endl;
     }
+
+    cout << "Сумма ряда = " << sum << endl;
+
+    return 0;
 }

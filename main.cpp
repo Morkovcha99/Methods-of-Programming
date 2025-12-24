@@ -1,82 +1,43 @@
 #include <iostream>
-#include <math.h>
+#include <locale>
+#include <cmath>
+
+#define M_PI 3.14159265358979323846
 using namespace std;
-int main(){
-    int n;
 
-    cout << "Введите какого порядка матрица =_\b";
-    cin >> n;
+int main() {
+    setlocale(LC_ALL, "Russian");
 
-    int matrix[n][n];
+    float x;
+    float x2;
 
-    for (int i=0; i<n; i++)
-    {
-        for (int j=0;j<n;j++)
-        {
-            matrix[i][j] = 0;
-        }
-    }
-
-    for (int i=0; i<n; i++)
-    {   
-        if (i < n/2)
-        {
-            for (int j=0;j<n;j++)
-            {
-                if (j<i+1 || j>n-i-2)
-                {
-                    matrix[i][j] = 1;
-                }
-                else{
-                    matrix[i][j] = 0;
-                }
-            }
-        }
-        else
-        {
-            for (int j=0;j<n;j++)
-            {
-                if (j<n-i || j>i-1)
-                {
-                    matrix[i][j] = 1;
-                }
-                else{
-                    matrix[i][j] = 0;
-                }
-            }
+    do {
+        cout << "Ввести x:_\b";
+        cin >> x;
+        x2 = fabs(x);
+        if (x2 <= 1) {
+            cout << "Вне заданного промежутка\n";
         }
 
-        
+    } while (x2 <= 1);
 
-    }
+    double t = 0.1;    
+    double sum = M_PI/2;
+    int n = 1;
+
+    double x1 = x;  
 
     
-// 1 0 0 1
-// 1 1 1 1  
-// 1 1 1 1  
-// 1 0 0 1 
+    while (fabs(t) > 0.0000001) {
+        t = (1 / (n *(-x1)));
 
-// 1 0 0 0 1
-// 1 1 0 1 1 
-// 1 1 1 1 1
-// 1 1 0 1 1
-// 1 0 0 0 1
-
-// 1 0 0 0 0 1
-// 1 1 0 0 1 1
-// 1 1 1 1 1 1
-// 1 1 1 1 1 1
-// 1 1 0 0 1 1
-// 1 0 0 0 0 1
-    for (int i=0; i<n;i++)
-    {
-        for (int j=0;j<n;j++)
-        {
-            cout << matrix[i][j] << " ";
-        }
-
-        cout << "\n";
+        sum += t;
+        x1 *= -(x * x);
+        n += 2;
+        cout << t << endl;
     }
-    
 
+    cout << "Сумма ряда = " << sum << endl;
+
+    return 0;
 }
